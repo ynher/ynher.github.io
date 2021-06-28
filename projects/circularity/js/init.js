@@ -25,10 +25,15 @@ var init = function (window) {
 
         // TODO 2 : Create a function that draws a circle 
         // Code to draw a circle
+function drawCircle(){
+    
 circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
 physikz.addRandomVelocity(circle, canvas);
 view.addChild(circle);
 circles.push(circle);
+
+
+}
 
 
 
@@ -81,8 +86,10 @@ drawCircle(5);
             }
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            
-
+            // if circle has gone past left of place Right
+           if(circle.y > canvas.width){
+               circle.y = 0;
+           }
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
