@@ -25,20 +25,35 @@ var init = function (window) {
 
         // TODO 2 : Create a function that draws a circle 
         // Code to draw a circle
-function drawCircle(){
-    
-circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-physikz.addRandomVelocity(circle, canvas);
-view.addChild(circle);
-circles.push(circle);
+        function drawCircle(){
+                
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas);
+            view.addChild(circle);
+            circles.push(circle);
 
 
-}
+        }
 
 
 
         // TODO 3 / 8 : Call the drawCircle() function 
-drawCircle(5);
+        for (var loopsCompleted = 0; loopsCompleted <= 100; loopsCompleted++) {
+            drawCircle();
+            physikz.updatePosition(circles[0])
+            physikz.updatePosition(circles[1])
+            physikz.updatePosition(circles[2])
+            physikz.updatePosition(circles[3])
+            physikz.updatePosition(circles[4])
+
+            game.checkCirclePosition(circles[0])
+            game.checkCirclePosition(circles[1])
+            game.checkCirclePosition(circles[2])
+            game.checkCirclePosition(circles[3])
+            game.checkCirclePosition(circles[4])
+
+        }
+        
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -54,20 +69,12 @@ drawCircle(5);
 
             
         
-                physikz.updatePosition( circle[0]);
-                physikz.updatePosition( circle[1]);
-                physikz.updatePosition( circle[2]);
-                physikz.updatePosition( circle[3]);
-                physikz.updatePosition( circle[4]);
-            }
+               // deleted to be in loop //
+            
             
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            game.checkCirclePosition(circle[0]);
-            game.checkCirclePosition(circle[1]);
-            game.checkCirclePosition(circle[2]);
-            game.checkCirclePosition(circle[3]);
-            game.checkCirclePosition(circle[4]);
+            // deleted to be in loop //
             // TODO 9 : Iterate over the array
            
             
@@ -87,9 +94,13 @@ drawCircle(5);
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
             // if circle has gone past left of place Right
-           if(circle.y > canvas.width){
+           if(circle.y > canvas.height){
                circle.y = 0;
-           }
+           }if(circle.y < canvas.height){
+            circle.y = 0;
+        } if ( circle.x < canvas.width ) {
+            circle.x = 0;
+        }
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
@@ -108,7 +119,7 @@ drawCircle(5);
         
         app.addUpdateable(window.opspark.game);
     }
-;
+};
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&
